@@ -299,12 +299,12 @@ ifdef dumpvar_goals
   # treat VARNAME as a path and return the absolute path to it.
   absolute_dumpvar := $(strip $(filter abs-%,$(dumpvar_goals)))
   ifdef absolute_dumpvar
-    dumpvar_goals := $(patsubst abs-%,%,$(dumpvar_goals))
-    DUMPVAR_VALUE := $(PWD)/$($(dumpvar_goals))
-    dumpvar_target := dumpvar-abs-$(dumpvar_goals)
+      dumpvar_goals := $(patsubst abs-%,%,$(dumpvar_goals))
+      DUMPVAR_VALUE = $(PWD)/$($(dumpvar_goals))
+      dumpvar_target := dumpvar-abs-$(dumpvar_goals)
   else
-    DUMPVAR_VALUE := $($(dumpvar_goals))
-    dumpvar_target := dumpvar-$(dumpvar_goals)
+      DUMPVAR_VALUE = $($(dumpvar_goals))
+      dumpvar_target := dumpvar-$(dumpvar_goals)
   endif
 
 .PHONY: $(dumpvar_target)
@@ -320,18 +320,3 @@ endif
 endif # CALLED_FROM_SETUP
 
 
-ifneq ($(PRINT_BUILD_CONFIG),)
-$(info ============================================)
-$(info   PLATFORM_VERSION_CODENAME=$(PLATFORM_VERSION_CODENAME))
-$(info   PLATFORM_VERSION=$(PLATFORM_VERSION))
-$(info   TARGET_PRODUCT=$(TARGET_PRODUCT))
-$(info   TARGET_BUILD_VARIANT=$(TARGET_BUILD_VARIANT))
-$(info   TARGET_SIMULATOR=$(TARGET_SIMULATOR))
-$(info   TARGET_BUILD_TYPE=$(TARGET_BUILD_TYPE))
-$(info   TARGET_ARCH=$(TARGET_ARCH))
-$(info   HOST_ARCH=$(HOST_ARCH))
-$(info   HOST_OS=$(HOST_OS))
-$(info   HOST_BUILD_TYPE=$(HOST_BUILD_TYPE))
-$(info   BUILD_ID=$(BUILD_ID))
-$(info ============================================)
-endif

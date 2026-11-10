@@ -130,6 +130,22 @@ include $(board_config_mk)
 TARGET_DEVICE_DIR := $(patsubst %/,%,$(dir $(board_config_mk)))
 board_config_mk :=
 
+ifneq ($(PRINT_BUILD_CONFIG),)
+$(info ============================================)
+$(info   PLATFORM_VERSION_CODENAME=$(PLATFORM_VERSION_CODENAME))
+$(info   PLATFORM_VERSION=$(PLATFORM_VERSION))
+$(info   TARGET_PRODUCT=$(TARGET_PRODUCT))
+$(info   TARGET_BUILD_VARIANT=$(TARGET_BUILD_VARIANT))
+$(info   TARGET_SIMULATOR=$(TARGET_SIMULATOR))
+$(info   TARGET_BUILD_TYPE=$(TARGET_BUILD_TYPE))
+$(info   TARGET_ARCH=$(TARGET_ARCH))
+$(info   HOST_ARCH=$(HOST_ARCH))
+$(info   HOST_OS=$(HOST_OS))
+$(info   HOST_BUILD_TYPE=$(HOST_BUILD_TYPE))
+$(info   BUILD_ID=$(BUILD_ID))
+$(info ============================================)
+endif
+
 # Clean up/verify variables defined by the board config file.
 TARGET_BOOTLOADER_BOARD_NAME := $(strip $(TARGET_BOOTLOADER_BOARD_NAME))
 TARGET_CPU_ABI := $(strip $(TARGET_CPU_ABI))
